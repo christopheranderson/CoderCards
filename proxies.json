@@ -1,0 +1,42 @@
+{
+    "proxies": {
+        "uploadImage": {
+            "matchCondition": {
+                "methods": [
+                    "PUT",
+                    "OPTIONS"
+                ],
+                "route": "upload/{image}"
+            },
+            "backendUri": "https://%STORAGEENDPOINT%/card-input/{image}?%STORAGESASTOKEN%"
+        },
+        "getImage": {
+            "matchCondition": {
+                "methods": [
+                    "GET",
+                    "OPTIONS"
+                ],
+                "route": "card/{name}"
+            },
+            "backendUri": "https://%STORAGEENDPOINT%/card-output/{name}"
+        },
+        "root": {
+            "matchCondition": {
+                "route": "index.html"
+            },
+            "backendUri": "https://%STORAGEENDPOINT%/content/index.html"
+        },
+        "public": {
+            "matchCondition": {
+                "route": "public/{*restOfPath}"
+            },
+            "backendUri": "https://%STORAGEENDPOINT%/content/public/{restOfPath}"
+        },
+        "node_modules": {
+            "matchCondition": {
+                "route": "node_modules/{*restOfPath}"
+            },
+            "backendUri": "https://%STORAGEENDPOINT%/content/node_modules/{restOfPath}"
+        }
+    }
+}
