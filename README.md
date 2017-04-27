@@ -12,7 +12,7 @@
 
 * **Filename must be in the form `Name of person-Title of person.jpg`**
 
-* A score based on the predominant emotion (e.g., anger, happiness) is drawn on the top
+* A score based on the predominant emotion (e.g., anger, happiness) is drawn on the top 
 
 * The card is written to the output blob container `card-output`
 
