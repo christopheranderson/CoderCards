@@ -99,8 +99,7 @@ static async Task<string> CallEmotionAPI(byte[] image)
 static string GetFullImagePath(string filename)
 {
     var path = Path.Combine(
-        Environment.GetEnvironmentVariable("ROOT"), 
-        Environment.GetEnvironmentVariable("SITE_PATH"), 
+        Environment.GetEnvironmentVariable("ROOT"),
         ASSETS_FOLDER,
         filename);
 
