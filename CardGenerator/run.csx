@@ -59,7 +59,7 @@ public static Tuple<string, string> GetNameAndTitle(string filename)
 {
     string[] words = filename.Split('-');
 
-    return words.Length > 1 ? Tuple.Create(words[0], words[1]) : Tuple.Create("", "");
+    return words.Length > 1 ? Tuple.Create(words[0], words[1]) : Tuple.Create(filename, "");
 }
 
 static Image GetCardImageAndScores(Scores scores, out double score)
