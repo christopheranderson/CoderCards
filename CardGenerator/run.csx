@@ -50,7 +50,7 @@ public static async Task Run(byte[] image, string filename, Stream outputBlob, T
 
     var personInfo = GetNameAndTitle(filename); // extract name and title from filename
     MergeCardImage(card, image, personInfo, score);
-
+      
     SaveAsJpeg(card, outputBlob);
     telemetry.TrackEvent("Card Generated", new Dictionary<string, string>{{"filename",filename},{"name",personInfo.Item1},{"title",personInfo.Item2}}, null);
 }
