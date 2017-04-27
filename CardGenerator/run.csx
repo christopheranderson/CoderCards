@@ -8,9 +8,16 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights.Extensibility;
+
 private const string EMOTION_API_URI      = "https://api.projectoxford.ai/emotion/v1.0/recognize";
 private const string EMOTION_API_KEY_NAME = "EmotionAPIKey";
 private const string ASSETS_FOLDER        = "assets";
+
+private static TelemetryClient telemetry = new TelemetryClient();
+private static string key = TelemetryConfiguration.Active.InstrumentationKey = System.Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY", EnvironmentVariableTarget.Process);
 
 public static async Task Run(byte[] image, string filename, Stream outputBlob, TraceWriter log)
 {
@@ -45,6 +52,7 @@ public static async Task Run(byte[] image, string filename, Stream outputBlob, T
     MergeCardImage(card, image, personInfo, score);
 
     SaveAsJpeg(card, outputBlob);
+    telemetry.TrackEvent("Card Generated", new Dictionary<string, string>{{"filename",filename},{"name",personInfo.Item1},{"title",personInfo.Item2}}, null);
 }
 
 public static Tuple<string, string> GetNameAndTitle(string filename)
